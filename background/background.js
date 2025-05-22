@@ -1,10 +1,15 @@
-chrome.runtime.onInstalled.addListener(() => {
-    console.log("Extension installed!");
-  });
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === "GREET") {
-      sendResponse({ reply: "Hello from background!" });
+    if (message.type === "DOWNLOAD_IMAGES") {
+      const urls = message.images;
+      urls.forEach((url, index) => {
+        const extension = url.split('.').pop().split('?')[0] || "png";
+        chrome.downloads.download({
+          url: url,
+          filename: `image_${Date.now()}_${index}.${extension}`,
+          conflictAction: "uniquify"
+        });
+      });
     }
   });
   

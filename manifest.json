@@ -3,14 +3,12 @@
     "name": "Ru3xxxDownloaderExtension",
     "version": "1.0",
     "description": "Extension support for download image from rule34.xxx.",
-    "icons": {
-        "48": "assets/icon.png"
-    },
     "permissions": [
         "storage",
         "tabs",
         "activeTab",
-        "scripting"
+        "scripting",
+        "downloads"
     ],
     "host_permissions": [
         "https://rule34.xxx/*"
@@ -19,8 +17,7 @@
         "service_worker": "background/background.js"
     },
     "action": {
-        "default_popup": "popup/popup.html",
-        "default_icon": "assets/icon.png"
+        "default_popup": "popup/popup.html"
     },
     "content_scripts": [
         {
